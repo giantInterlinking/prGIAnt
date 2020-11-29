@@ -1,4 +1,4 @@
-# prGIAnt
+# (Progressive) GIAnt for Geospatial Interlinking
 
 The code consists of two parts: one for the serial and one for the parallel execution. 
 
