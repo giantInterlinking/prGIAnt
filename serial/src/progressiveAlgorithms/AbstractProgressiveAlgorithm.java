@@ -92,16 +92,16 @@ public abstract class AbstractProgressiveAlgorithm {
 
     protected abstract float getNoOfCommonBlocks(int sourceId);
 
-    protected float getWeight(int sourceId, Geometry tEntity) {
+    protected float getWeight(int sourceId, Geometry tEntity, WeightingScheme wScheme) {
         float commonBlocks = getNoOfCommonBlocks(sourceId);
         switch (wScheme) {
             case CF:
                 return commonBlocks;
-            case JS:
+            case JS_APPROX:
                 final Envelope sourceEnv = sourceData[sourceId].getEnvelopeInternal();
                 final Envelope targetEnv = tEntity.getEnvelopeInternal();
                 return commonBlocks / (getNoOfBlocks(sourceEnv) + getNoOfBlocks(targetEnv) - commonBlocks);
-            case X2:
+            case X2_APPROX:
                 long[] va  = new long[2];
                 va[0] = (long) commonBlocks;
                 va[1] = getNoOfBlocks(tEntity.getEnvelopeInternal()) - va[0];
@@ -111,6 +111,17 @@ public abstract class AbstractProgressiveAlgorithm {
                 va_[1] = (int) Math.max(1, noOfApproxBlocks - (va[0] + va[1] + va_[0]));
 
                 return (float) chiSquaredTest.chiSquare(new long[][]{va, va_});
+            case MBR:
+                final Envelope srcEnv = sourceData[sourceId].getEnvelopeInternal();
+                final Envelope trgEnv = tEntity.getEnvelopeInternal();
+                final Envelope mbrIntersection = srcEnv.intersection(trgEnv);
+                float denominator = ((float) srcEnv.getArea()) + ((float) trgEnv.getArea()) - ((float) mbrIntersection.getArea());
+                if (denominator == 0) {
+                    return 0;
+                }
+                return (float) (mbrIntersection.getArea() / denominator);
+            case POINTS:
+                return (float) 1.0 / (sourceData[sourceId].getNumPoints() + tEntity.getNumPoints());
         }
 
         return 1.0f;
