@@ -96,6 +96,12 @@ public class ProgressiveGIAnt extends AbstractProgressiveAlgorithm {
                             continue;
                         }
 
+                        if (tEntity.getGeometryType().equals("GeometryCollection")) {
+                            geoCollections++;
+                            line = reader.readLine();
+                            continue;
+                        }
+                        
                         final TIntSet candidateMatches = getCandidates(counter, tEntity);
 
                         final TIntIterator intIterator = candidateMatches.iterator();
