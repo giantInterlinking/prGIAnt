@@ -10,7 +10,7 @@ The datasets we used for evaluationg of both execution modes are available [here
 
 ## (batch) GIA.nt
 
-To run get the performance reported in **Table 3** and **Figure 6**, execute the class experiments/BatchGIAnt.java .
+To run get the performance reported in **Table 3** and **Figure 6**, execute the class [experiments/BatchGIAnt.java](serial/src/experiments/BatchGIAnt.java).
 
 To get the statistics reported in **Table 4**, execute the class experiments/Table4.java.
 
