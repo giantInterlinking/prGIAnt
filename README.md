@@ -36,6 +36,8 @@ We have extended the original approach of Progressive GIA.nt in two ways.
 
 # Parallel Processing
 
+The latest code along with more detailed instructions for Parallel Processing is available [here](https://github.com/GiorgosMandi/TSAS-DS-JedAI).
+
 ## Build
 
 	sbt assembly
