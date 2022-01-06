@@ -108,7 +108,7 @@ public class ProgressiveGIAnt extends AbstractProgressiveAlgorithm {
                         while (intIterator.hasNext()) {
                             int candidateMatchId = intIterator.next();
                             if (validCandidate(candidateMatchId, tEntity.getEnvelopeInternal(), null)) {
-                                float weight = getWeight(candidateMatchId, tEntity);
+                                float weight = getWeight(candidateMatchId, tEntity, wScheme);
                                 if (minimumWeight <= weight) {
                                     final Pair p = new Pair(candidateMatchId, counter, weight, tEntity);
                                     topKPairs.add(p);
