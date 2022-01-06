@@ -28,7 +28,7 @@ To get the performance reported in **Figures 6** and **7**, execute the class [e
 
 ## Supervised GIA.nt
 
-Its implementation is available [here](/serial/src/supervisedFiltering.java).
+Its implementation is available [here](/serial/src/supervisedFiltering/ApproximateGI.java).
 
 # Parallel Processing
 
